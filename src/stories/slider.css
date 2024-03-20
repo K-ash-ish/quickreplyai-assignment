@@ -53,7 +53,27 @@
   background-color: #47b647;
   border-radius: 50%;
 }
-
+.tooltip {
+  position: absolute;
+  top: -3rem;
+  padding: 0.4rem;
+  border-radius: 0.4rem;
+  background-color: black;
+  color: white;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: center;
+}
+.tooltip::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background-color: black;
+  position: absolute;
+  transform: rotate(45deg);
+  bottom: -0.2rem;
+  border-radius: 2px;
+}
 .progress-bar {
   position: absolute;
   background-color: rgb(34 197 94 / 1);

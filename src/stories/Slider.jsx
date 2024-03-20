@@ -22,7 +22,7 @@ function Slider({
   const [thumbPosition, setThumbPosition] = useState();
 
   function updateProgressBar() {
-    const percentage = ((rangeValue - min) / (max - min)) * 100;
+    const percentage = Math.floor(((rangeValue - min) / (max - min)) * 100);
     setProgressBar(percentage);
   }
 
@@ -47,7 +47,7 @@ function Slider({
   }, [rangeValue]);
   return (
     <>
-      <h3>{rangeValue}</h3>
+      {/* <h3>{rangeValue}</h3> */}
       <div className="slider-container">
         <input
           ref={sliderRef}
@@ -64,6 +64,12 @@ function Slider({
           ref={customSliderRef}
           style={{ transform: `translateX(${thumbPosition}px)` }}
         ></div>
+        <div
+          className="tooltip"
+          style={{ transform: `translateX(${thumbPosition}px)` }}
+        >
+          {progressBar}%
+        </div>
         {/* <div
           className="absolute w-6 h-6 rounded-full pointer-events-none  z-30 bg-white  shadow-md flex items-center justify-center
            before:content-[''] before:w-3 before:h-3 before:bg-green-400 before:z-50 before:rounded-full hover:before:cursor-pointer  "
