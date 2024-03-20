@@ -16,10 +16,15 @@ function Slider({
   max,
   step,
 }) {
+  const [progressBar, setProgressBar] = useState(0);
   const sliderRef = useRef();
   const customSliderRef = useRef();
   const [thumbPosition, setThumbPosition] = useState();
-  const [progressBar, setProgressBar] = useState(0);
+
+  function updateProgressBar() {
+    const percentage = ((rangeValue - min) / (max - min)) * 100;
+    setProgressBar(percentage);
+  }
 
   function updateThumbPosition() {
     const sliderWidth = sliderRef.current.offsetWidth;
@@ -31,29 +36,23 @@ function Slider({
     } else setThumbPosition(position);
   }
 
-  function updateProgressBar() {
-    const percentage = ((rangeValue - min) / (max - min)) * 100;
-    setProgressBar(percentage);
-  }
-
-  useEffect(() => {
-    updateThumbPosition();
-    updateProgressBar();
-  }, [rangeValue]);
-
   function handleChange(e) {
     const { value } = e.target;
     onChange(+value);
     updateThumbPosition();
   }
+  useEffect(() => {
+    updateProgressBar();
+    updateThumbPosition();
+  }, [rangeValue]);
   return (
     <>
-      <h3 className="my-2">{rangeValue}</h3>
-      <div className="bg-gray-100 h-2 rounded-md relative flex items-center">
+      <h3>{rangeValue}</h3>
+      <div className="slider-container">
         <input
           ref={sliderRef}
           type="range"
-          className="slider-range  appearance-none bg-transparent w-full z-20 cursor-pointer "
+          className="slider"
           min={min}
           max={max}
           value={rangeValue}
@@ -61,13 +60,17 @@ function Slider({
           step={step}
         />
         <div
+          className="thumb"
           ref={customSliderRef}
-          className="absolute w-6 h-6 rounded-full  z-30 bg-white pointer-events-none shadow-md flex items-center justify-center before:content-[''] before:w-3 before:h-3 before:bg-green-400 before:z-50 before:rounded-full hover:before:cursor-pointer hover:before:w-8 "
           style={{ transform: `translateX(${thumbPosition}px)` }}
         ></div>
+        {/* <div
+          className="absolute w-6 h-6 rounded-full pointer-events-none  z-30 bg-white  shadow-md flex items-center justify-center
+           before:content-[''] before:w-3 before:h-3 before:bg-green-400 before:z-50 before:rounded-full hover:before:cursor-pointer  "
+        ></div> */}
         <div
           style={{ width: progressBar + "%" }}
-          className={`absolute  bg-green-400 h-2 rounded `}
+          className={`progress-bar`}
         ></div>
       </div>
     </>

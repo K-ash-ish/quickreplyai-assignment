@@ -6,7 +6,7 @@ function App() {
   const [value, setValue] = useState(0);
   return (
     <>
-      <div className="w-[200px] ml-11">
+      <div className="">
         Hello
         <Slider
           min={0}
