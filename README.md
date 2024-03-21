@@ -1,8 +1,22 @@
-# React + Vite
+## Assignment problem
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- To build different types of sliders using React and Storybook.
 
-Currently, two official plugins are available:
+## Solution
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- To locally run the project clone the project.
+- `npm install`
+- To run the project in storybook environment `npm run storybook`
+- Else can use `npm run dev`
+
+### Issues
+
+- Issue in the continuous slider when in storybook the slider jumps to center but gets to normal when clicked no problem while using the component independently
+- In the range slider the tooltips need some fixes.
+- In the range slider, the slider button is not filled with a green color.
+
+### Working Example
+
+![](./public/1.gif)
+![](./public/2.gif)
+![](./public/3.png)

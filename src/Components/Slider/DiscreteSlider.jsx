@@ -9,7 +9,6 @@ function DiscreteSlider({
   min,
   max,
   step,
-  children,
 }) {
   const [progressBar, setProgressBar] = useState(0);
   const sliderRef = useRef();
@@ -23,7 +22,6 @@ function DiscreteSlider({
   }
   if (customSliderRef.current) {
     const totalRange = max - min;
-    const numSteps = Math.floor(totalRange / step);
     const stepDistance = step / totalRange;
     dicretePoints =
       Math.floor(stepDistance * sliderRef.current.offsetWidth) - 2;
