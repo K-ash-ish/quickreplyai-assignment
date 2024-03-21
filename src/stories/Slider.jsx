@@ -20,7 +20,7 @@ function Slider({
   const sliderRef = useRef();
   const customSliderRef = useRef();
   const [thumbPosition, setThumbPosition] = useState();
-
+  console.log(sliderRef);
   function updateProgressBar() {
     const percentage = Math.floor(((rangeValue - min) / (max - min)) * 100);
     setProgressBar(percentage);
@@ -52,7 +52,7 @@ function Slider({
         <input
           ref={sliderRef}
           type="range"
-          className="slider"
+          className="slider slider-size"
           min={min}
           max={max}
           value={rangeValue}
@@ -60,7 +60,7 @@ function Slider({
           step={step}
         />
         <div
-          className="thumb"
+          className="thumb thumb-size"
           ref={customSliderRef}
           style={{ transform: `translateX(${thumbPosition}px)` }}
         ></div>
