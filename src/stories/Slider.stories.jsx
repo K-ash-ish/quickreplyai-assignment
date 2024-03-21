@@ -52,6 +52,9 @@ Continuous.args = {
 export const Discrete = Template.bind({});
 Discrete.args = {
   type: "Discrete",
+  min: 0,
+  max: 100,
+  step: 10,
   // Other discrete slider props
 };
 

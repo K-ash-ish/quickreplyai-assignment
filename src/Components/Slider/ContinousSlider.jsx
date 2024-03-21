@@ -7,10 +7,8 @@ import { useEffect, useRef, useState } from "react";
 
 function ContinousSlider({
   onChange,
-  label,
   status,
   size,
-  type,
   rangeValue,
   min,
   max,
