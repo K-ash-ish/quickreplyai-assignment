@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useRef, useState } from "react";
-import "../../stories/slider.css";
+import "./slider.css";
 
-function RangeSlider({ min, max, onChange }) {
+function RangeSlider({ min, max, onChange, step = 1, size, status }) {
   const [minVal, setMinVal] = useState(min);
   const [maxVal, setMaxVal] = useState(max);
   const [leftTooltipPosition, setLeftTooltipPostion] = useState();
@@ -47,7 +47,6 @@ function RangeSlider({ min, max, onChange }) {
     const tooltipPosition = Math.floor(
       (widthSweptByRightThumb / 100) * rightSliderWidth
     );
-    console.log(tooltipPosition);
     setRightTooltipPostion(tooltipPosition);
   }, [maxVal]);
 
@@ -57,10 +56,11 @@ function RangeSlider({ min, max, onChange }) {
         <input
           ref={minValRef}
           type="range"
-          className="left-thumb  multi-thumb slider thumb-zindex-3"
+          className={`left-thumb  multi-thumb slider thumb-zindex-3 slider-size-${size} slider-${status}`}
           min={min}
           max={max}
           value={minVal}
+          step={step}
           onChange={(e) => {
             if (e.target.value < max) {
               const val = Math.min(e.target.value, maxVal - 1);
@@ -70,9 +70,10 @@ function RangeSlider({ min, max, onChange }) {
         />
         {/* <div className="left-thumb-container"></div> */}
         <input
+          step={step}
           ref={maxValRef}
           type="range"
-          className="right-thumb multi-thumb slider thumb-zindex-4"
+          className={`right-thumb multi-thumb slider thumb-zindex-4 slider-size-${size} slider-${status}`}
           min={min}
           max={max}
           value={maxVal}

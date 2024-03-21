@@ -10,39 +10,55 @@ export default {
   tags: ["autodocs"],
   parameters: { layout: "centered" },
   args: { onChange: fn() },
+  argTypes: {
+    type: {
+      control: {
+        type: "radio",
+      },
+      options: ["Continuous", "Discrete", "Range"],
+    },
+    status: {
+      type: {
+        control: { type: "radio" },
+      },
+      options: ["default", "hover", "focus"],
+    },
+    size: {
+      type: {
+        control: { type: "radio" },
+      },
+      options: ["24", "32"],
+    },
+  },
 };
 
-export const Continuous = {
-  args: {
-    label: "Continuous Slider",
-    rangeValue: 0,
-    min: 0,
-    max: 100,
-    step: 1,
-  },
-  render: function Render(args) {
-    const [{ rangeValue }, updateArgs] = useArgs();
-    function onChange(newValue) {
-      updateArgs({ rangeValue: newValue });
-    }
-    return <Slider {...args} onChange={onChange} rangeValue={rangeValue} />;
-  },
+const Template = (args) => {
+  const [{ rangeValue }, updateArgs] = useArgs(0);
+  function onChange(newValue) {
+    updateArgs({ rangeValue: newValue });
+  }
+  return <Slider {...args} onChange={onChange} rangeValue={rangeValue} />;
 };
-export const Range = {
-  args: {
-    label: "Range Slider",
-    rangeValue: 0,
-  },
-  render: function Render(args) {
-    const [{ rangeValue }, updateArgs] = useArgs();
-    function onChange(newValue) {
-      updateArgs({ rangeValue: newValue });
-    }
-    return <RangeSlider />;
-  },
+
+export const Continuous = Template.bind({});
+Continuous.args = {
+  type: "Continuous",
+  min: 0,
+  max: 100,
+  step: 1,
+  // Other continuous slider props
 };
-export const Descrete = {
-  args: {
-    label: "Descrete Slider",
-  },
+
+export const Discrete = Template.bind({});
+Discrete.args = {
+  type: "Discrete",
+  // Other discrete slider props
+};
+
+export const Range = Template.bind({});
+Range.args = {
+  type: "Range",
+  min: 0,
+  max: 100,
+  step: 1,
 };
